@@ -1,16 +1,19 @@
 import "./NewExpense.css";
 import ExpenseForm from "./ExpenseForm";
 // component
-const NewExpense = () => {
+const NewExpense = (props) => {
   // function
   const SaveDataHandler = (enteredData) => {
-    // object
+    // add id to object
     const expenseData = {
       ...enteredData,
       // enhance obj with an id
       id: Math.random().toString(),
     };
-    console.log(expenseData);
+
+    // forward this enriched data up to App, which imports NewExpense
+    // and now has a new function pointer to obtain this data
+    props.onAddExpense(expenseData);
   };
 
   return (
