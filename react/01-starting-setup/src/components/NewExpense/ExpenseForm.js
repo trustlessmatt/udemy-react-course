@@ -4,7 +4,7 @@ import { useState } from "react";
 const ExpenseForm = (props) => {
   // state variables
   const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredNumber, setEnteredNumber] = useState("");
+  const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
 
   const titleChangeHandler = (event) => {
@@ -12,7 +12,7 @@ const ExpenseForm = (props) => {
   };
 
   const numberChangeHandler = (event) => {
-    setEnteredNumber(event.target.value);
+    setEnteredAmount(event.target.value);
   };
 
   const dateChangeHandler = (event) => {
@@ -26,7 +26,7 @@ const ExpenseForm = (props) => {
     // build new object
     const expenseData = {
       title: enteredTitle,
-      number: enteredNumber,
+      amount: enteredAmount,
       date: new Date(enteredDate),
     };
 
@@ -36,7 +36,7 @@ const ExpenseForm = (props) => {
     // after submission, reset the state of the form back to blank
     setEnteredTitle("");
     setEnteredDate("");
-    setEnteredNumber("");
+    setEnteredAmount("");
   };
 
   return (
@@ -54,7 +54,7 @@ const ExpenseForm = (props) => {
           <label>Amount</label>
           <input
             type="number"
-            value={enteredNumber}
+            value={enteredAmount}
             min="0.01"
             step="0.01"
             onChange={numberChangeHandler}
