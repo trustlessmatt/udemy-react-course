@@ -7,6 +7,17 @@ const NewExpense = (props) => {
 
   // function
   const SaveDataHandler = (enteredData) => {
+    // return early if no data is sent
+    if (enteredData === null)
+      return;
+
+    // do nothing if there is any missing data
+    if ((enteredData.title.length === 0)
+      || (enteredData.amount.length === 0)
+      || (enteredData.date.length === 0)) {
+      return;
+    }
+    
     const expenseData = {
       ...enteredData,
       // enhance obj with an id
