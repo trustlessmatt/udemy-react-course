@@ -1,10 +1,12 @@
+import { useState } from "react";
 import "./NewExpense.css";
 import ExpenseForm from "./ExpenseForm";
 // component
 const NewExpense = (props) => {
+  const [isEditing, setIsEditing] = useState(false);
+
   // function
   const SaveDataHandler = (enteredData) => {
-    // add id to object
     const expenseData = {
       ...enteredData,
       // enhance obj with an id
@@ -14,11 +16,32 @@ const NewExpense = (props) => {
     // forward this enriched data up to App, which imports NewExpense
     // and now has a new function pointer to obtain this data
     props.onAddExpense(expenseData);
+
+    // after submitting, close the form
+    setIsEditing(false);
   };
+
+  const startEditingHandler = () => {
+    setIsEditing(true);
+  };
+
+  const stopEditingHandler = () => {
+    setIsEditing(false);
+  };
+
+  const formContent = (
+    <button onClick={startEditingHandler}>New Expense</button>
+  );
 
   return (
     <div className="new-expense">
-      <ExpenseForm onSaveData={SaveDataHandler} />
+      {!isEditing && formContent}
+      {isEditing && (
+        <ExpenseForm
+          onSaveData={SaveDataHandler}
+          onCancel={stopEditingHandler}
+        />
+      )}
     </div>
   );
 };
