@@ -10,7 +10,6 @@ const Expenses = (props) => {
 
   const dateFilterHandler = (chosenYear) => {
     setSelectedYear(chosenYear);
-    console.log("Chosen Year: ", chosenYear);
   };
 
   // my question was: where does this .items property come from?
